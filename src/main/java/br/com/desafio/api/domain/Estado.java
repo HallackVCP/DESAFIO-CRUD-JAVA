@@ -1,15 +1,32 @@
 package br.com.desafio.api.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Estado {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+@Entity
+public class Estado implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
-	Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
-	String nome;
+	private String nome;
 	
-	List<Cidade> cidades = new ArrayList<>();
+
+	@JsonIgnore
+	@OneToMany
+	private List<Cidade> cidades = new ArrayList<>();
 	
 	public Estado() {
 		

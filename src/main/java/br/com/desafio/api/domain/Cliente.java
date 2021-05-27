@@ -1,20 +1,37 @@
 package br.com.desafio.api.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Cliente {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+@Entity
+public class Cliente implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
-	Integer id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
-	String nome;
+	private String nome;
 	
-	Date dataNascimento;
+	private Date dataNascimento;
 	
-	char sexo;
+	private char sexo;
 	
-	Integer idade;
+	private Integer idade;
 	
-	Cidade cidade;
+	@ManyToOne
+	@JoinColumn(name = "cidade_id")
+	private Cidade cidade;
+	
+	
 	
 	public Cliente() {
 		
