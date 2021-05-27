@@ -10,5 +10,5 @@ import br.com.desafio.api.domain.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 
-	List<Cliente> findByNomeIgnoreCase(String nome);
+	List<Cliente> findAllByNome(String nome);
 }

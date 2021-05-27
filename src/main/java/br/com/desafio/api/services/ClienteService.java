@@ -26,7 +26,7 @@ public class ClienteService {
 
 	
 	public List<Cliente> findNome(String nome) {
-		List<Cliente> lista = repo.findByNomeIgnoreCase(nome);
+		List<Cliente> lista = repo.findAllByNome(nome);
 		int i = lista.size();
 		return lista;
 	}
