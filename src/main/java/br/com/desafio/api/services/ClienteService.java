@@ -1,5 +1,6 @@
 package br.com.desafio.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +25,10 @@ public class ClienteService {
 	}
 
 	
-//	public Cliente findNome(String nome) {
-//		Optional<Cliente> obj = repo.findOne(obj);
-//		return null;
-//	}
+	public List<Cliente> findNome(String nome) {
+		List<Cliente> lista = repo.findByNomeIgnoreCase(nome);
+		int i = lista.size();
+		return lista;
+	}
 
 }

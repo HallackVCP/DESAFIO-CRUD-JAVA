@@ -4,15 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.desafio.api.domain.enums.EstadoEnum;
 
 
 @Entity
@@ -23,12 +26,12 @@ public class Cidade implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
+	
 	private String nome;
 	
 	
-	@ManyToOne
-	@JoinColumn(name = "estado_id")
-	private Estado estado;
+	@Enumerated(EnumType.STRING)
+	private EstadoEnum estado;
 	
 	@JsonIgnore
 	@OneToMany
@@ -38,7 +41,7 @@ public class Cidade implements Serializable{
 		
 	}
 
-	public Cidade(Integer id, String nome, Estado estado) {
+	public Cidade(Integer id, String nome, EstadoEnum estado) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -61,11 +64,11 @@ public class Cidade implements Serializable{
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
+	public EstadoEnum getEstado() {
 		return estado;
 	}
 
-	public void setEstado(Estado estado) {
+	public void setEstado(EstadoEnum estado) {
 		this.estado = estado;
 	}
 
