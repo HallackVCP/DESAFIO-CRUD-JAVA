@@ -11,6 +11,7 @@ import br.com.desafio.api.repositories.ClienteRepository;
 import br.com.desafio.api.services.exceptions.ObjectNotFoundException;
 
 
+
 @Service
 public class ClienteService {
 	
@@ -26,9 +27,27 @@ public class ClienteService {
 
 	
 	public List<Cliente> findNome(String nome) {
-		List<Cliente> lista = repo.findAllByNome(nome);
-		int i = lista.size();
-		return lista;
+		
+		return repo.findAllByNome(nome);
+	}
+
+
+	public Cliente insert(Cliente obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+
+
+	public void delete(Integer id) {
+		find(id);
+		repo.deleteById(id);	
+	}
+
+
+	public Cliente update(Cliente obj) {
+		find(obj.getId());
+		
+		return repo.save(obj);
 	}
 
 }

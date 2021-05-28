@@ -1,5 +1,6 @@
 package br.com.desafio.api.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,10 @@ public class CidadeService {
 				 "Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
 	
 	}
+
+	public List<Cidade> findNome(String nome) {
+		return repo.findAllByNome(nome);
+	}
+	
 
 }
