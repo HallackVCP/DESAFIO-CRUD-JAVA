@@ -46,7 +46,6 @@ public class ClienteService {
 
 	public Cliente update(Cliente obj) {
 		find(obj.getId());
-		
 		return repo.save(obj);
 	}
 

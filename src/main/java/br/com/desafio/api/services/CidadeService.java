@@ -1,5 +1,6 @@
 package br.com.desafio.api.services;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.desafio.api.domain.Cidade;
 import br.com.desafio.api.domain.Cliente;
+import br.com.desafio.api.domain.enums.EstadoEnum;
 import br.com.desafio.api.repositories.CidadeRepository;
 import br.com.desafio.api.services.exceptions.ObjectNotFoundException;
 
@@ -29,6 +31,23 @@ public class CidadeService {
 	public List<Cidade> findNome(String nome) {
 		return repo.findAllByNome(nome);
 	}
+
+	
+
+	public Cidade insert(Cidade obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
+
+	public List<Cidade> findEstado(EstadoEnum estado) {
+		List<Cidade> cidades = Collections.emptyList();
+        if (estado != null) {
+            cidades = repo.findByEstado(estado);
+        }
+        return cidades;
+	}
+
+	
 	
 
 }
